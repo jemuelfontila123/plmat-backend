@@ -10,6 +10,7 @@ class AddUser < ActiveRecord::Migration[7.0]
 
     create_table :users do |u|
       u.belongs_to :exam_results
+      u.integer :role
       u.string :email
       u.string :password_digest
       u.string :first_name
