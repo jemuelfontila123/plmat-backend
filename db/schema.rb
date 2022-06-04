@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_141554) do
 
   create_table "questionnaires", force: :cascade do |t|
     t.integer "subject"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "total_time"

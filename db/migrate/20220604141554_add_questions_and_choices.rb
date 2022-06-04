@@ -3,6 +3,7 @@ class AddQuestionsAndChoices < ActiveRecord::Migration[7.0]
 
     create_table :questionnaires do |q|
       q.integer :subject
+      q.string :name
       q.timestamps
       q.integer :total_time
     end
