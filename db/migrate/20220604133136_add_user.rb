@@ -1,15 +1,6 @@
 class AddUser < ActiveRecord::Migration[7.0]
   def change
-    create_table :exam_results do |e|
-      e.integer :math_score
-      e.integer :science_score
-      e.integer :english_score
-      e.integer :filipino_score
-      e.integer :abstract_score
-    end
-
     create_table :users do |u|
-      u.belongs_to :exam_results
       u.integer :role
       u.string :email
       u.string :password_digest
@@ -19,6 +10,14 @@ class AddUser < ActiveRecord::Migration[7.0]
       u.integer :current_exam
       u.boolean :finished_exam
       u.timestamps
+    end
+    create_table :exam_results do |e|
+      e.belongs_to :users
+      e.integer :math_score, default: 0
+      e.integer :science_score, default: 0
+      e.integer :english_score, default: 0
+      e.integer :filipino_score, default: 0
+      e.integer :abstract_score, default: 0
     end
   end
 end

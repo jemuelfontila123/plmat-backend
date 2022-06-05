@@ -23,5 +23,6 @@ class AddQuestionsAndChoices < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
+    add_reference :users, :questionnaire, foreign_key:true
   end
 end

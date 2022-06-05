@@ -24,11 +24,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_141554) do
   end
 
   create_table "exam_results", force: :cascade do |t|
-    t.integer "math_score"
-    t.integer "science_score"
-    t.integer "english_score"
-    t.integer "filipino_score"
-    t.integer "abstract_score"
+    t.bigint "users_id"
+    t.integer "math_score", default: 0
+    t.integer "science_score", default: 0
+    t.integer "english_score", default: 0
+    t.integer "filipino_score", default: 0
+    t.integer "abstract_score", default: 0
+    t.index ["users_id"], name: "index_exam_results_on_users_id"
   end
 
   create_table "questionnaires", force: :cascade do |t|
@@ -50,7 +52,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_141554) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.bigint "exam_results_id"
     t.integer "role"
     t.string "email"
     t.string "password_digest"
@@ -61,8 +62,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_141554) do
     t.boolean "finished_exam"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["exam_results_id"], name: "index_users_on_exam_results_id"
+    t.bigint "questionnaire_id"
+    t.index ["questionnaire_id"], name: "index_users_on_questionnaire_id"
   end
 
   add_foreign_key "choices", "questions", column: "questions_id"
+  add_foreign_key "users", "questionnaires"
 end

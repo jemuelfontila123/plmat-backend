@@ -7,7 +7,6 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 8 }
 
   belongs_to :questionnaire
-  belongs_to :exam_result
 
   enum role: [:admin, :test_taker]
 end
