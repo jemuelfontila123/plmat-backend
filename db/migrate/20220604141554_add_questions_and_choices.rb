@@ -9,7 +9,6 @@ class AddQuestionsAndChoices < ActiveRecord::Migration[7.0]
     end
 
     create_table :questions do |q|
-      q.belongs_to :questionnaires
       q.string :text
       q.integer :difficulty
       q.string :subcategory
@@ -17,12 +16,18 @@ class AddQuestionsAndChoices < ActiveRecord::Migration[7.0]
     end
 
     create_table :choices do |t|
-      t.belongs_to :questions, foreign_key: true
       t.string :text
       t.boolean :correct_answer, default: false
       t.timestamps
     end
 
-    add_reference :users, :questionnaire, foreign_key:true
+    create_table :records do |t|
+      t.belongs_to :user, foreign_key: true
+      t.belongs_to :questionnaire, foreign_key: true
+      t.timestamps
+    end
+
+    add_reference :questions, :questionnaire, foreign_key: true
+    add_reference :choices, :question, foreign_key: true
   end
 end

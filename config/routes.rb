@@ -6,8 +6,12 @@ Rails.application.routes.draw do
   #
   namespace :api do
     namespace :v1 do
-      resources :users
       post '/auth/login', to: 'authentication#login'
+
+      resources :users
+      resources :questionnaires do
+        resources :questions, shallow: true
+      end
     end
   end
 end

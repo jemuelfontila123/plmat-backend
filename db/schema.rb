@@ -15,22 +15,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_141554) do
   enable_extension "plpgsql"
 
   create_table "choices", force: :cascade do |t|
-    t.bigint "questions_id"
     t.string "text"
     t.boolean "correct_answer", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["questions_id"], name: "index_choices_on_questions_id"
+    t.bigint "question_id"
+    t.index ["question_id"], name: "index_choices_on_question_id"
   end
 
   create_table "exam_results", force: :cascade do |t|
-    t.bigint "users_id"
     t.integer "math_score", default: 0
     t.integer "science_score", default: 0
     t.integer "english_score", default: 0
     t.integer "filipino_score", default: 0
     t.integer "abstract_score", default: 0
-    t.index ["users_id"], name: "index_exam_results_on_users_id"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_exam_results_on_user_id"
   end
 
   create_table "questionnaires", force: :cascade do |t|
@@ -42,13 +42,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_141554) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.bigint "questionnaires_id"
     t.string "text"
     t.integer "difficulty"
     t.string "subcategory"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["questionnaires_id"], name: "index_questions_on_questionnaires_id"
+    t.bigint "questionnaire_id"
+    t.index ["questionnaire_id"], name: "index_questions_on_questionnaire_id"
+  end
+
+  create_table "records", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "questionnaire_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["questionnaire_id"], name: "index_records_on_questionnaire_id"
+    t.index ["user_id"], name: "index_records_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,10 +71,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_141554) do
     t.boolean "finished_exam"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "questionnaire_id"
-    t.index ["questionnaire_id"], name: "index_users_on_questionnaire_id"
   end
 
-  add_foreign_key "choices", "questions", column: "questions_id"
-  add_foreign_key "users", "questionnaires"
+  add_foreign_key "choices", "questions"
+  add_foreign_key "exam_results", "users"
+  add_foreign_key "questions", "questionnaires"
+  add_foreign_key "records", "questionnaires"
+  add_foreign_key "records", "users"
 end

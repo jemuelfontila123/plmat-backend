@@ -12,12 +12,13 @@ class AddUser < ActiveRecord::Migration[7.0]
       u.timestamps
     end
     create_table :exam_results do |e|
-      e.belongs_to :users
       e.integer :math_score, default: 0
       e.integer :science_score, default: 0
       e.integer :english_score, default: 0
       e.integer :filipino_score, default: 0
       e.integer :abstract_score, default: 0
     end
+
+    add_reference :exam_results, :user, foreign_key: true
   end
 end
