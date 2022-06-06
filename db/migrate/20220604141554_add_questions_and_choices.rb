@@ -13,7 +13,6 @@ class AddQuestionsAndChoices < ActiveRecord::Migration[7.0]
       q.integer :difficulty
       q.string :subcategory
       q.text :choices, array: true, default: []
-      q.string :test_taker_answer
       q.string :correct_answer
       q.timestamps
     end

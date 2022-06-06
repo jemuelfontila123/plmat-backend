@@ -8,10 +8,6 @@ class AddUser < ActiveRecord::Migration[7.0]
       u.string :last_name
       u.string :middle_name
       u.integer :current_exam, default: 0
-      u.text :english_answers, array: true, default: []
-      u.text :math_answers, array: true, default: []
-      u.text :filipino_answers, array: true, default: []
-      u.text :science_answers, array: true, default: []
       u.boolean :finished_exam, default: false
       u.timestamps
     end
