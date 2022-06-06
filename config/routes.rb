@@ -15,6 +15,12 @@ Rails.application.routes.draw do
         end
         resources :questions, shallow: true
       end
+
+      resources :results do
+        collection do
+          post 'submit'
+        end
+      end
     end
   end
 end

@@ -69,6 +69,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_141554) do
     t.string "last_name"
     t.string "middle_name"
     t.integer "current_exam", default: 0
+    t.text "english_answers", default: [], array: true
+    t.text "math_answers", default: [], array: true
+    t.text "filipino_answers", default: [], array: true
+    t.text "science_answers", default: [], array: true
     t.boolean "finished_exam", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

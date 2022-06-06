@@ -13,13 +13,13 @@ Record.destroy_all
 
 user = User.create(role: "admin", email: 'jemuelfontila1@gmail.com', password: 'test1234')
 subjects = Questionnaire.subjects
-english_questionnaire = Questionnaire.create(subject: subjects[:english], name: '2018-2019')
 math_questionnaire = Questionnaire.create(subject: subjects[:math], name: '2018-2019')
 filipino_questionnaire = Questionnaire.create(subject: subjects[:filipino], name: '2018-2019')
+english_questionnaire = Questionnaire.create(subject: subjects[:english], name: '2018-2019')
 science_questionnaire = Questionnaire.create(subject: subjects[:science], name: '2018-2019')
 abstract_questionnaire=  Questionnaire.create(subject: subjects[:abstract], name: '2018-2019')
 
-test_taker = User.create(role: "test_taker", email: 'jemuelfontila123@gmail.com', password: 'test1234')
+test_taker = User.create(role: "test_taker", email: 'jemuelfontila123@gmail.com', password: 'test1234567')
 Record.create(user: test_taker, questionnaire: english_questionnaire)
 Record.create(user: test_taker, questionnaire: math_questionnaire)
 Record.create(user: test_taker, questionnaire: filipino_questionnaire)
