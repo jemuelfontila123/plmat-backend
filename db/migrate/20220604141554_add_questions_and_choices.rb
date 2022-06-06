@@ -12,13 +12,10 @@ class AddQuestionsAndChoices < ActiveRecord::Migration[7.0]
       q.string :text
       q.integer :difficulty
       q.string :subcategory
+      q.text :choices, array: true, default: []
+      q.string :test_taker_answer
+      q.string :correct_answer
       q.timestamps
-    end
-
-    create_table :choices do |t|
-      t.string :text
-      t.boolean :correct_answer, default: false
-      t.timestamps
     end
 
     create_table :records do |t|
@@ -28,6 +25,5 @@ class AddQuestionsAndChoices < ActiveRecord::Migration[7.0]
     end
 
     add_reference :questions, :questionnaire, foreign_key: true
-    add_reference :choices, :question, foreign_key: true
   end
 end

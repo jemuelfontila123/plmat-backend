@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
       resources :users
       resources :questionnaires do
+        collection do
+          get 'exams'
+        end
         resources :questions, shallow: true
       end
     end

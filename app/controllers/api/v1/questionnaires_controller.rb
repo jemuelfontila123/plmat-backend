@@ -29,6 +29,13 @@ class Api::V1::QuestionnairesController < Api::V1::BaseController
     end
   end
 
+  def exams
+    @questionnaire = @current_user.questionnaires[params[:current_exam].to_i]
+    render json: [], status: :ok if @questionnaire.blank? || params[:current_exam].blank?
+    @exam_questions = Question.where(questionnaire: @questionnaire)
+    render json: @exam_questions, status: :ok
+  end
+
   private
 
   def questionnaire_params

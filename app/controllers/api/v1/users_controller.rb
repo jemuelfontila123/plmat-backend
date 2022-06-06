@@ -1,7 +1,7 @@
 class Api::V1::UsersController < Api::V1::BaseController
 
   before_action :authorize_request
-  before_action :role_authorization
+  # before_action :role_authorization, except: %i[show]
   before_action :find_user, except: %i[create index]
 
   def index

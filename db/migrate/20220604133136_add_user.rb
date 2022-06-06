@@ -7,8 +7,8 @@ class AddUser < ActiveRecord::Migration[7.0]
       u.string :first_name
       u.string :last_name
       u.string :middle_name
-      u.integer :current_exam
-      u.boolean :finished_exam
+      u.integer :current_exam, default: 0
+      u.boolean :finished_exam, default: false
       u.timestamps
     end
     create_table :exam_results do |e|

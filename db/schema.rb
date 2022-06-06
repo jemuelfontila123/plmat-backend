@@ -19,8 +19,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_141554) do
     t.boolean "correct_answer", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "question_id"
-    t.index ["question_id"], name: "index_choices_on_question_id"
   end
 
   create_table "exam_results", force: :cascade do |t|
@@ -45,6 +43,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_141554) do
     t.string "text"
     t.integer "difficulty"
     t.string "subcategory"
+    t.text "choices", default: [], array: true
+    t.string "test_taker_answer"
+    t.string "correct_answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "questionnaire_id"
@@ -67,13 +68,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_141554) do
     t.string "first_name"
     t.string "last_name"
     t.string "middle_name"
-    t.integer "current_exam"
-    t.boolean "finished_exam"
+    t.integer "current_exam", default: 0
+    t.boolean "finished_exam", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "choices", "questions"
   add_foreign_key "exam_results", "users"
   add_foreign_key "questions", "questionnaires"
   add_foreign_key "records", "questionnaires"

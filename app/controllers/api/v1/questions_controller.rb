@@ -23,7 +23,6 @@ class Api::V1::QuestionsController < Api::V1::BaseController
       render json: {errors: @question.errors.full_messages },
              status: :unprocessable_entity
     end
-
   end
 
   private

@@ -7,9 +7,10 @@ class Api::V1::BaseController < ApplicationController
   def authorize_request
     header = request.headers['Authorization']
     header = header.split(' ').last if header
+    p header
     begin
       @decoded = JsonWebToken.decode(header)
-      @user = User.find_by_id(@decoded[:user_id])
+      @current_user = User.find_by_id(@decoded[:user_id])
     rescue ActiveRecord::RecordNotFound => e
       render json: { errors: e.message }, status: :unauthorized
     rescue JWT::DecodeError => e
