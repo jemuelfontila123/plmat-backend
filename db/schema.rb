@@ -69,6 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_141554) do
     t.string "middle_name"
     t.integer "current_exam", default: 0
     t.boolean "finished_exam", default: false
+    t.boolean "watched_demo", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

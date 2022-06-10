@@ -9,6 +9,7 @@ class AddUser < ActiveRecord::Migration[7.0]
       u.string :middle_name
       u.integer :current_exam, default: 0
       u.boolean :finished_exam, default: false
+      u.boolean :watched_demo, default: false
       u.timestamps
     end
     create_table :exam_results do |e|

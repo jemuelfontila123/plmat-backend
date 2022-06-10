@@ -8,7 +8,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       post '/auth/login', to: 'authentication#login'
 
-      resources :users
+      resources :users do
+        collection do
+          post 'demo'
+        end
+      end
       resources :questionnaires do
         collection do
           get 'exams'

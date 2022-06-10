@@ -1,7 +1,7 @@
 class Api::V1::UsersController < Api::V1::BaseController
 
   before_action :authorize_request
-  # before_action :role_authorization, except: %i[show]
+  before_action :role_authorization, except: %i[show demo]
   before_action :find_user, except: %i[create index]
 
   def index
@@ -30,7 +30,11 @@ class Api::V1::UsersController < Api::V1::BaseController
     end
   end
 
-
+  def demo
+    unless @current_user.update(watched_demo: true)
+      render json: {errors: @current_user.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
 
   private
 

@@ -14,6 +14,7 @@ class AddQuestionsAndChoices < ActiveRecord::Migration[7.0]
       q.string :subcategory
       q.text :choices, array: true, default: []
       q.string :correct_answer
+      q.string :file_url
       q.timestamps
     end
 
