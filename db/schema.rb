@@ -45,6 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_141554) do
     t.string "subcategory"
     t.text "choices", default: [], array: true
     t.string "correct_answer"
+    t.string "file_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "questionnaire_id"
@@ -67,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_141554) do
     t.string "first_name"
     t.string "last_name"
     t.string "middle_name"
+    t.string "contact_number"
     t.integer "current_exam", default: 0
     t.boolean "finished_exam", default: false
     t.boolean "watched_demo", default: false

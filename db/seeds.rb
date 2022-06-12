@@ -5,8 +5,8 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-
 User.destroy_all
+ExamResult.destroy_all
 Questionnaire.destroy_all
 Question.destroy_all
 Record.destroy_all
@@ -17,13 +17,14 @@ english_questionnaire = Questionnaire.create(subject: subjects[:english], name: 
 math_questionnaire = Questionnaire.create(subject: subjects[:math], name: '2018-2019')
 filipino_questionnaire = Questionnaire.create(subject: subjects[:filipino], name: '2018-2019')
 science_questionnaire = Questionnaire.create(subject: subjects[:science], name: '2018-2019')
-abstract_questionnaire=  Questionnaire.create(subject: subjects[:abstract], name: '2018-2019')
 
-test_taker = User.create(role: "test_taker", email: 'jemuelfontila123@gmail.com', password: 'test1234')
+test_taker = User.create(role: "test_taker", email: 'jyfontila2018@plm.edu.ph', password: 'test1234', first_name: 'Jemuel', middle_name:'Y.', last_name: 'Fontila', contact_number: "09196022579")
+test_taker1 = User.create(role: "test_taker", email: 'mj.lagarta00@gmail.com', password: 'test1234', first_name: 'Jiro Mark', middle_name:'G.', last_name: 'Garcia', contact_number: "09395295519")
+test_taker2 = User.create(role: "test_taker", email: 'jmggarcia2018@plm.edu.ph', password: 'test1234', first_name: 'Mark Jimwell', middle_name:'L.', last_name: 'Lagarta', contact_number: "09295292279")
+
 Record.create(user: test_taker, questionnaire: english_questionnaire)
 Record.create(user: test_taker, questionnaire: math_questionnaire)
 Record.create(user: test_taker, questionnaire: filipino_questionnaire)
-Record.create(user: test_taker, questionnaire: abstract_questionnaire)
 Record.create(user: test_taker, questionnaire: science_questionnaire)
 
 #english

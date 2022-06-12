@@ -7,6 +7,7 @@ class AddUser < ActiveRecord::Migration[7.0]
       u.string :first_name
       u.string :last_name
       u.string :middle_name
+      u.string :contact_number
       u.integer :current_exam, default: 0
       u.boolean :finished_exam, default: false
       u.boolean :watched_demo, default: false
